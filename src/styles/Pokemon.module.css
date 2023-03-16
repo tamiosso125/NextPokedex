@@ -9,7 +9,8 @@
   color: #fff;
   padding: 0.3em;
   margin: 0.8em auto;
-  width: 200px;
+  width: 250px;
+  border-radius: 10px;
 }
 
 .pokemon_container h3 {
@@ -124,4 +125,22 @@
 
 .data_height {
   border-right: 1px solid #ccc;
+}
+
+.stats {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex: 1;
+}
+
+.stats p {
+  display: flex;
+  font-size: 24px;
+  padding-left: 5%;
+}
+
+.stat_group {
+  display: flex;
+  align-items: center;
 }
