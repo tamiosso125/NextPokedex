@@ -2,43 +2,34 @@ import styles from '../../styles/Pokemon.module.css'
 
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { getPokemonData } from '@/helpers/api'
+import { getPokemonData, searchAllPokemon } from '@/helpers/api'
 
 
 export const getStaticPaths = async () => {
-  try {
-    const maxPokemons = 151
-    const api = `https://pokeapi.co/api/v2/pokemon/`
 
-    const res = await fetch(`${api}/?limit=${maxPokemons}`)
+  const data = await searchAllPokemon()
 
-    const data = await res.json()
-
-    const paths = data.results.map((pokemon, index) => {
-      return {
-        params: { pokemonId: index.toString() },
-      }
-    })
-
+  const paths = data.results.map((pokemon, index) => {
     return {
-      paths,
-      fallback: false,
+      params: { pokemonId: index.toString() },
     }
+  })
 
-  } catch (error) {
-    console.log("error: ", error)
+  return {
+    paths,
+    fallback: false,
   }
+
+
 }
 
 export const getStaticProps = async (context) => {
-  try {
-    const data = await getPokemonData(context)
-    return {
-      props: { pokemon: data },
-    }
-  } catch (error) {
-    console.log("error: ", error)
+
+  const data = await getPokemonData(context)
+  return {
+    props: { pokemon: data },
   }
+
 
 }
 

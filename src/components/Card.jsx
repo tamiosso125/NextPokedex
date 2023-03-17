@@ -3,7 +3,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 export default function Card({ pokemon }) {
-  // console.log(pokemon);
   return (
     <div className={styles.card}>
       <Image
