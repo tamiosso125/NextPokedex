@@ -34,17 +34,27 @@ export const searchAllPokemon = async () => {
 }
 
 
-export const searchPokemon = async () => {
-
-  const data = await searchAllPokemon()
-  const newData = await data.results.map(async ({ url }) => {
+export const searchPokemon = async (allPokemom) => {
+  const newData = await allPokemom.results.map(async ({ url }) => {
     const res2 = await fetch(url);
     const data2 = await res2.json();
     return await data2;
   });
   const p = await Promise.all(newData);
+  const newPoke = p.map(({ name, id, types, height, weight, abilities, stats }) => (
+    {
+      name,
+      id,
+      types,
+      height,
+      weight,
+      abilities,
+      stats
+    }
+  )
+  );
 
-  return p
+  return newPoke
 
 
 }

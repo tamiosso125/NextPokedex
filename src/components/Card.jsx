@@ -3,8 +3,15 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 export default function Card({ pokemon }) {
+  if (!pokemon) {
+    return <div>Carregando</div>;
+  }
   return (
-    <div className={styles.card}>
+    <div
+      className={`${styles.card} ${
+        styles['type_' + pokemon.types[0].type.name]
+      }`}
+    >
       <Image
         src={`https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${(
           '00' + pokemon.id
