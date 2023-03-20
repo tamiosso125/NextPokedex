@@ -9,6 +9,11 @@ export const getStaticPaths = async () => {
   const data = await searchAllPokemon()
 
   const paths = data.results.map((pokemon, index) => {
+    if (index == 0) {
+      return {
+        params: { pokemonId: '1' },
+      }
+    }
     return {
       params: { pokemonId: index.toString() },
     }
@@ -24,17 +29,10 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async (context) => {
   const pokemonId = context.params.pokemonId
-  if (pokemonId == '0') {
-    const data = await getPokemonData('1')
-    return {
-      props: { pokemon: data },
-    }
-  } else {
 
-    const data = await getPokemonData(pokemonId)
-    return {
-      props: { pokemon: data },
-    }
+  const data = await getPokemonData(pokemonId)
+  return {
+    props: { pokemon: data },
   }
 
 
