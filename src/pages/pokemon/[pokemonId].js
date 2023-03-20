@@ -1,14 +1,19 @@
 import styles from '../../styles/Pokemon.module.css'
 
 import Image from 'next/image'
-import { getPokemonData, searchAllPokemon } from '../api'
+
 
 
 export const getStaticPaths = async () => {
 
-  const data = await searchAllPokemon()
+  const maxPokemons = 151;
+  const api = `https://pokeapi.co/api/v2/pokemon/`;
 
-  const paths = data.results.map((pokemon, index) => {
+  const res = await fetch(`${api}/?limit=${maxPokemons}`);
+
+  const p = await res.json();
+
+  const paths = p.results.map((pokemon, index) => {
     if (index == 0) {
       return {
         params: { pokemonId: '1' },
@@ -29,10 +34,20 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async (context) => {
   const pokemonId = context.params.pokemonId
+  const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`)
+  const data = await res.json()
+  const newPoke = {
+    name: data.name,
+    id: data.id,
+    types: data.types,
+    height: data.height,
+    weight: data.weight,
+    abilities: data.abilities,
+    stats: data.stats
+  }
 
-  const data = await getPokemonData(pokemonId)
   return {
-    props: { pokemon: data },
+    props: { pokemon: newPoke },
   }
 
 

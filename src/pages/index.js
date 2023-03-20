@@ -2,20 +2,39 @@ import React, { useEffect, useState } from "react";
 import Image from 'next/image'
 import styles from '@/styles/Home.module.css'
 import Card from '@/components/Card';
-import { searchAllPokemon, searchPokemon } from "./api";
-
 export async function getStaticProps() {
 
-  const p = await searchAllPokemon();
+  const maxPokemons = 151;
+  const api = `https://pokeapi.co/api/v2/pokemon/`;
+
+  const res = await fetch(`${api}/?limit=${maxPokemons}`);
+
+  const p = await res.json();
+
   p.results.forEach((item, index) => {
     item.id = index + 1;
   });
-  const p2 = await searchPokemon(p);
+
+  const newData = await p.results.map(async ({ url }) => {
+    const res2 = await fetch(url);
+    const data2 = await res2.json();
+    return await data2;
+  });
+  const p2 = await Promise.all(newData);
+
+  const newPoke = p2.map(({ name, id, types }) => (
+    {
+      name,
+      id,
+      types,
+    }
+  )
+  );
 
   return {
     props: {
       pokemons: {
-        p2
+        newPoke
       }
     },
   };
@@ -25,7 +44,7 @@ export async function getStaticProps() {
 
 export default function Home({ pokemons }) {
   const [search, setSearch] = useState('');
-  const pokemonFilter = pokemons.p2.filter(({ name }) => name.startsWith(search))
+  const pokemonFilter = pokemons.newPoke.filter(({ name }) => name.startsWith(search))
   return (
     <> <div className={styles.title_container}>
       <Image
