@@ -1,7 +1,7 @@
 import styles from '../../styles/Pokemon.module.css'
 
 import Image from 'next/image'
-import { getPokemonData, searchAllPokemon } from '@/helpers/api'
+import { getPokemonData, searchAllPokemon } from '../api'
 
 
 export const getStaticPaths = async () => {

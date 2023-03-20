@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Image from 'next/image'
 import styles from '@/styles/Home.module.css'
 import Card from '@/components/Card';
-import { searchAllPokemon, searchPokemon } from "@/helpers/api";
+import { searchAllPokemon, searchPokemon } from "./api";
 
 export async function getStaticProps() {
 
