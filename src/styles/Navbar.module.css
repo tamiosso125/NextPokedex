@@ -4,7 +4,7 @@
   align-items: center;
   padding: 1em 1.2em;
   margin-bottom: 2em;
-  background-color: #333;
+  background-color: #362929;
   color: #fff;
 }
 
@@ -21,6 +21,7 @@
 .link_items {
   display: flex;
   list-style: none;
+  font-size: 1.4em;
 }
 
 .link_items li {

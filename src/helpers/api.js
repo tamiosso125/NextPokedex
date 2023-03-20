@@ -41,15 +41,12 @@ export const searchPokemon = async (allPokemom) => {
     return await data2;
   });
   const p = await Promise.all(newData);
-  const newPoke = p.map(({ name, id, types, height, weight, abilities, stats }) => (
+
+  const newPoke = p.map(({ name, id, types }) => (
     {
       name,
       id,
       types,
-      height,
-      weight,
-      abilities,
-      stats
     }
   )
   );

@@ -28,9 +28,6 @@ export default function Home({ pokemons }) {
   const pokemonFilter = pokemons.p2.filter(({ name }) => name.startsWith(search))
   return (
     <> <div className={styles.title_container}>
-      <h1 className={styles.title}>
-        My<span>Pokedex</span>
-      </h1>
       <Image
         src="/pokeball.png"
         width="50"
