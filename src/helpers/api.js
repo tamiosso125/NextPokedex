@@ -1,8 +1,5 @@
-export const getPokemonData = async (context) => {
-
-  const id = context.params.pokemonId
-
-  const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
+export const getPokemonData = async (pokemonId) => {
+  const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`)
   const data = await res.json()
   const newPoke = {
     name: data.name,

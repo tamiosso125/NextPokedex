@@ -1,7 +1,6 @@
 import styles from '../../styles/Pokemon.module.css'
 
 import Image from 'next/image'
-import { useRouter } from 'next/router'
 import { getPokemonData, searchAllPokemon } from '@/helpers/api'
 
 
@@ -24,21 +23,25 @@ export const getStaticPaths = async () => {
 }
 
 export const getStaticProps = async (context) => {
+  const pokemonId = context.params.pokemonId
+  if (pokemonId == '0') {
+    const data = await getPokemonData('1')
+    return {
+      props: { pokemon: data },
+    }
+  } else {
 
-  const data = await getPokemonData(context)
-  return {
-    props: { pokemon: data },
+    const data = await getPokemonData(pokemonId)
+    return {
+      props: { pokemon: data },
+    }
   }
 
 
 }
 
 export default function Pokemon({ pokemon }) {
-  const router = useRouter()
 
-  if (router.isFallback) {
-    return <div>Carregando</div>
-  }
   return (
     <div className={styles.pokemon_container}>
       <div className={styles.pokemon_next}>
