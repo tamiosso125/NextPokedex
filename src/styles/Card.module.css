@@ -10,6 +10,14 @@
   box-shadow: 5px 5px 12px rgba(0, 0, 0, 0.5);
 }
 
+.pokemon_container {
+  text-align: center;
+  display: flex;
+
+  justify-content: center;
+  font-size: 1.2em;
+}
+
 .card .id {
   margin: 1em 0;
   background-color: #272727;

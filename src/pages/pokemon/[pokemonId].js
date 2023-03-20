@@ -5,12 +5,8 @@ import { getPokemonData, searchAllPokemon } from '@/helpers/api'
 
 
 export const getStaticPaths = async () => {
-  const maxPokemons = 251
-  const api = `https://pokeapi.co/api/v2/pokemon/`
 
-  const res = await fetch(`${api}/?limit=${maxPokemons}`)
-
-  const data = await res.json()
+  const data = await searchAllPokemon()
 
   const paths = data.results.map((pokemon, index) => {
     return {
@@ -22,32 +18,29 @@ export const getStaticPaths = async () => {
     paths,
     fallback: false,
   }
+
+
 }
 
 export const getStaticProps = async (context) => {
-  const id = context.params.pokemonId
-  if (id === '0') {
-    const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${'1'}`)
-
-    const data = await res.json()
+  const pokemonId = context.params.pokemonId
+  if (pokemonId == '0') {
+    const data = await getPokemonData('1')
     return {
       props: { pokemon: data },
     }
   } else {
 
-    const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
-
-    const data = await res.json()
+    const data = await getPokemonData(pokemonId)
     return {
       props: { pokemon: data },
     }
   }
 
+
 }
 
-
 export default function Pokemon({ pokemon }) {
-
   return (
     <div className={styles.pokemon_container}>
       <div className={styles.pokemon_next}>
