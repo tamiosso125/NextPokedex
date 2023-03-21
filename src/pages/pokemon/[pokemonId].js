@@ -21,7 +21,7 @@ export const getStaticPaths = async () => {
       }
     }
     return {
-      params: { pokemonId: index.toString() },
+      params: { pokemonId: pokemon.name },
     }
   })
   return {
