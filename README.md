@@ -2,6 +2,7 @@ Projeto NextPokedex!
 Aplicação que serve como Pokedex para a primeira Geração.
 
 - Utilizado NextJs e CSS.
+- Responsivo para Mobile
 
 ## Instruções
 
