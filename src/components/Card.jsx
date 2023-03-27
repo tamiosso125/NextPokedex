@@ -24,9 +24,9 @@ export default function Card({ pokemon }) {
         className={styles.pokemon_card}
       />
       <p className={styles.id}>Nº {('000' + pokemon.id).slice(-4)}</p>
-      {/* <Link href={`/pokemon/${pokemon.name}`} className={styles.btn}>
+      <Link href={`/pokemon/${pokemon.id}`} className={styles.btn}>
         Details
-      </Link> */}
+      </Link>
     </div>
   );
 }

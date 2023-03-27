@@ -2,38 +2,9 @@ import styles from '../../styles/Pokemon.module.css'
 
 import Image from 'next/image'
 
+export async function getServerSideProps({ query }) {
+  const { pokemonId } = query;
 
-
-export const getStaticPaths = async () => {
-
-  const maxPokemons = 151;
-  const api = `https://pokeapi.co/api/v2/pokemon/`;
-
-  const res = await fetch(`${api}/?limit=${maxPokemons}`);
-
-  const p = await res.json();
-
-  const paths = p.results.map((pokemon, index) => {
-
-    if (index == 0) {
-      return {
-        params: { pokemonId: pokemon.name },
-      }
-    }
-    return {
-      params: { pokemonId: pokemon.name },
-    }
-  })
-  return {
-    paths,
-    fallback: false,
-  }
-
-
-}
-
-export const getStaticProps = async (context) => {
-  const pokemonId = context.params.pokemonId
   const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`)
   const data = await res.json()
   const newPoke = {
@@ -49,7 +20,6 @@ export const getStaticProps = async (context) => {
   return {
     props: { pokemon: newPoke },
   }
-
 
 }
 
