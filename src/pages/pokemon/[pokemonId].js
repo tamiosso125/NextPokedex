@@ -37,7 +37,7 @@ export default function Pokemon({ pokemon }) {
           priority='true'
         />
         <div>
-          <h3>Number:</h3>
+          <h3>Number:</h3><h3>Number:</h3>
           <p>#{('00' + pokemon.id).slice(-3)}</p>
         </div>
         <div>
