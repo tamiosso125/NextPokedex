@@ -1,7 +1,7 @@
-Projeto App de Receitas! :poultry_leg:
-Aplicação mobile para busca de alimentos e bebidas.
+Projeto NextPokedex!
+Aplicação que serve como Pokedex para a primeira Geração.
 
-- Utilizado React, Redux e CSS.
+- Utilizado NextJs e CSS.
 
 ## Instruções
 
