@@ -28,7 +28,9 @@ export async function getServerSideProps({ query }) {
     height: data.height,
     weight: data.weight,
     abilities: data.abilities,
-    stats: data.stats
+    stats: data.stats,
+    src: `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${('00' + data.id).slice(-3)}.png`
+
   }
 
   return {
@@ -49,11 +51,10 @@ export default function Pokemon({ pokemon }) {
 
         <h1 className={styles.title}>{pokemon.name}</h1>
         <Image
-          src={`https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${('00' + pokemon.id).slice(-3)}.png`}
+          src={pokemon.src}
           width="200"
           height="200"
           alt={pokemon.name}
-          priority
         />
         <div>
           <h3>Number:</h3>
