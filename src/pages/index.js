@@ -16,7 +16,16 @@ export async function getStaticProps() {
   });
 
   const newData = await p.results.map(async ({ url }) => {
-    const res2 = await fetch(url);
+    const res2 = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        query,
+        variables,
+      }),
+    });
     const data2 = await res2.json();
     return await data2;
   });
