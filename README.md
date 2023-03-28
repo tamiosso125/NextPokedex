@@ -14,7 +14,7 @@ Primeiramente faça o clone do projeto e depois:
 
 A página inicial mostra todos os Pokémon da primeira Geração e ainda é possível visualizar os detalhes de cada um deles! 
 ```bash
-- Link para o App https://nextpokedex-production.up.railway.app
+- Link para o <a href=“ https://nextpokedex-production.up.railway.app“>App</a>
 ```
 ![Captura de tela de 2023-03-27 08-36-05](https://user-images.githubusercontent.com/62403084/227955183-7a4f16aa-bd9d-47c7-909d-0cea6778f125.png)
 ![Captura de tela de 2023-03-27 08-36-51](https://user-images.githubusercontent.com/62403084/227955228-7c120741-25e8-4582-9134-5273d3993fbd.png)
