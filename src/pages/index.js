@@ -33,7 +33,13 @@ export async function getStaticProps() {
     return await data2;
   });
   const p2 = await Promise.all(newData);
-
+  if (typeof p2 === 'undefined' || typeof p2 === 'null') {
+    return {
+      props: {
+        error: 'Nothing to see here',
+      },
+    };
+  }
   const newPoke = p2.map(({ name, id, types }) => (
     {
       name,
