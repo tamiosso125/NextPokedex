@@ -43,6 +43,11 @@ export async function getStaticProps() {
 
 export default function Home({ pokemons }) {
   const [search, setSearch] = useState('');
+  if (!pokemons) {
+    return (
+      <div>Loading...</div>
+    )
+  }
   const pokemonFilter = pokemons.newPoke.filter(({ name }) => name.startsWith(search))
   return (
     <> <div className={styles.title_container}>
