@@ -3,44 +3,41 @@ import Image from 'next/image'
 import styles from '@/styles/Home.module.css'
 import Card from '@/components/Card';
 export async function getStaticProps() {
-  try {
-    const maxPokemons = 151;
-    const api = `https://pokeapi.co/api/v2/pokemon/`;
+  const maxPokemons = 151;
+  const api = `https://pokeapi.co/api/v2/pokemon/`;
 
-    const res = await fetch(`${api}/?limit=${maxPokemons}`);
+  const res = await fetch(`${api}/?limit=${maxPokemons}`);
 
-    const p = await res.json();
+  const p = await res.json();
 
-    p.results.forEach((item, index) => {
-      item.id = index + 1;
-    });
+  p.results.forEach((item, index) => {
+    item.id = index + 1;
+  });
 
-    const newData = await p.results.map(async ({ url }) => {
-      const res2 = await fetch(url);
-      const data2 = await res2.json();
-      return await data2;
-    });
-    const p2 = await Promise.all(newData);
+  const newData = await p.results.map(async ({ url }) => {
+    const res2 = await fetch(url);
+    const data2 = await res2.json();
+    return await data2;
+  });
+  const p2 = await Promise.all(newData);
 
-    const newPoke = p2.map(({ name, id, types }) => (
-      {
-        name,
-        id,
-        types,
+  const newPoke = p2.map(({ name, id, types }) => (
+    {
+      name,
+      id,
+      types,
+    }
+  )
+  );
+
+  return {
+    props: {
+      pokemons: {
+        newPoke
       }
-    )
-    );
+    },
+  };
 
-    return {
-      props: {
-        pokemons: {
-          newPoke
-        }
-      },
-    };
-  } catch (err) {
-    console.error(err);
-  }
 }
 
 
