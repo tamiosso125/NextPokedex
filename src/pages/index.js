@@ -7,7 +7,13 @@ export async function getStaticProps() {
   const api = `https://pokeapi.co/api/v2/pokemon/`;
 
   const res = await fetch(`${api}/?limit=${maxPokemons}`);
-
+  if (typeof res === 'undefined' || typeof res === 'null') {
+    return {
+      props: {
+        error: 'Nothing to see here',
+      },
+    };
+  }
   const p = await res.json();
 
   p.results.forEach((item, index) => {
@@ -16,6 +22,13 @@ export async function getStaticProps() {
 
   const newData = await p.results.map(async ({ url }) => {
     const res2 = await fetch(url);
+    if (typeof res2 === 'undefined' || typeof res2 === 'null') {
+      return {
+        props: {
+          error: 'Nothing to see here',
+        },
+      };
+    }
     const data2 = await res2.json();
     return await data2;
   });
