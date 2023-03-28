@@ -21,6 +21,7 @@ export default function Card({ pokemon }) {
         height='150'
         alt={pokemon.name}
         className={styles.pokemon_card}
+        priority
       />
       <p className={styles.id}>Nº {('000' + pokemon.id).slice(-4)}</p>
       <Link href={`/pokemon/${pokemon.id}`} className={styles.btn}>

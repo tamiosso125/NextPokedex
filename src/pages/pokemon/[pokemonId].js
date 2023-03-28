@@ -55,6 +55,7 @@ export default function Pokemon({ pokemon }) {
           width="200"
           height="200"
           alt={pokemon.name}
+          priority
         />
         <div>
           <h3>Number:</h3>
