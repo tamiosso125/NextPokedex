@@ -14,6 +14,13 @@ export async function getServerSideProps({ query }) {
     };
   }
   const data = await res.json()
+  if (typeof data === 'undefined' || typeof data === 'null') {
+    return {
+      props: {
+        error: 'Nothing to see here',
+      },
+    };
+  }
   const newPoke = {
     name: data.name,
     id: data.id,
