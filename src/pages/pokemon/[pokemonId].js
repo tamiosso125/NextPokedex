@@ -38,7 +38,7 @@ export async function getServerSideProps({ query }) {
 }
 
 export default function Pokemon({ pokemon }) {
-  if (!pokemons) {
+  if (!pokemon) {
     return (
       <div>Loading...</div>
     )
@@ -53,7 +53,7 @@ export default function Pokemon({ pokemon }) {
           width="200"
           height="200"
           alt={pokemon.name}
-          priority='true'
+          priority
         />
         <div>
           <h3>Number:</h3>

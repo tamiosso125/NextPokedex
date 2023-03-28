@@ -2,8 +2,14 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["raw.githubusercontent.com"],
-    unoptimized: true,
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'assets.pokemon.com',
+        port: '',
+        pathname: '/assets/cms2/img/pokedex/detail/**',
+      },
+    ],
   },
 }
 
