@@ -65,7 +65,7 @@ export default function Home({ pokemons }) {
   const pokemonFilter = pokemons.newPoke.filter(({ name }) => name.startsWith(search))
   if (!pokemons) {
     return (
-      <div>Loading...</div>
+      <div>Loading....</div>
     )
   }
   return (
