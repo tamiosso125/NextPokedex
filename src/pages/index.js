@@ -45,7 +45,7 @@ export async function getStaticProps() {
 export default function Home({ pokemons }) {
   const [search, setSearch] = useState('');
   const router = useRouter()
-  if (!router.isFallback && !pokemons) {
+  if (!router.isFallback || !pokemons) {
     return (
       <div>Loading...</div>
     )

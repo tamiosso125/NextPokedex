@@ -1,6 +1,7 @@
 import styles from '../../styles/Pokemon.module.css'
 
 import Image from 'next/image'
+import { useRouter } from 'next/router';
 
 export async function getServerSideProps({ query }) {
   const { pokemonId } = query;
@@ -24,6 +25,12 @@ export async function getServerSideProps({ query }) {
 }
 
 export default function Pokemon({ pokemon }) {
+  const router = useRouter()
+  if (!router.isFallback || !pokemons) {
+    return (
+      <div>Loading...</div>
+    )
+  }
   return (
     <div className={styles.pokemon_container}>
       <div className={styles.pokemon_next}>
