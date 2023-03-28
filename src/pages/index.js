@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Image from 'next/image'
 import styles from '@/styles/Home.module.css'
 import Card from '@/components/Card';
+import { useRouter } from "next/router";
 export async function getStaticProps() {
   const maxPokemons = 151;
   const api = `https://pokeapi.co/api/v2/pokemon/`;
@@ -43,7 +44,8 @@ export async function getStaticProps() {
 
 export default function Home({ pokemons }) {
   const [search, setSearch] = useState('');
-  if (!pokemons) {
+  const router = useRouter()
+  if (!router.isFallback && !pokemons) {
     return (
       <div>Loading...</div>
     )
