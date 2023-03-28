@@ -75,7 +75,6 @@ export default function Home({ pokemons }) {
         width="50"
         height="50"
         alt="MyPokedex"
-        priority
       />
     </div>
       <div className={styles.searchbar_container}>
