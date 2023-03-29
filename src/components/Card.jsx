@@ -14,9 +14,7 @@ export default function Card({ pokemon }) {
     >
       <h3 className={styles.title}>{pokemon.name}</h3>
       <Image
-        src={`https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${(
-          '00' + pokemon.id
-        ).slice(-3)}.png`}
+        src={pokemon.image}
         width='150'
         height='150'
         alt={pokemon.name}

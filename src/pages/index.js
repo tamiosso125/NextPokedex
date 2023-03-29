@@ -7,13 +7,6 @@ export async function getStaticProps() {
   const api = `https://pokeapi.co/api/v2/pokemon/`;
 
   const res = await fetch(`${api}/?limit=${maxPokemons}`);
-  if (typeof res === 'undefined' || typeof res === 'null') {
-    return {
-      props: {
-        error: 'Nothing to see here',
-      },
-    };
-  }
   const p = await res.json();
 
   p.results.forEach((item, index) => {
@@ -22,29 +15,19 @@ export async function getStaticProps() {
 
   const newData = await p.results.map(async ({ url }) => {
     const res2 = await fetch(url);
-    if (typeof res2 === 'undefined' || typeof res2 === 'null') {
-      return {
-        props: {
-          error: 'Nothing to see here',
-        },
-      };
-    }
     const data2 = await res2.json();
     return await data2;
   });
   const p2 = await Promise.all(newData);
-  if (typeof p2 === 'undefined' || typeof p2 === 'null') {
-    return {
-      props: {
-        error: 'Nothing to see here',
-      },
-    };
-  }
+
   const newPoke = p2.map(({ name, id, types }) => (
     {
       name,
       id,
       types,
+      image: `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${(
+        '00' + id
+      ).slice(-3)}.png`
     }
   )
   );
@@ -69,14 +52,9 @@ export default function Home({ pokemons }) {
     )
   }
   return (
-    <> <div className={styles.title_container}>
-      <Image
-        src="/pokeball.png"
-        width="50"
-        height="50"
-        alt="MyPokedex"
-      />
-    </div>
+    <>
+      <div className={styles.title_container}>
+      </div>
       <div className={styles.searchbar_container}>
         <div className={styles.searchbar}>
           <input

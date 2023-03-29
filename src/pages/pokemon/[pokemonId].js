@@ -6,21 +6,9 @@ export async function getServerSideProps({ query }) {
   const { pokemonId } = query;
 
   const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`)
-  if (typeof res === 'undefined' || typeof res === 'null') {
-    return {
-      props: {
-        error: 'Nothing to see here',
-      },
-    };
-  }
+
   const data = await res.json()
-  if (typeof data === 'undefined' || typeof data === 'null') {
-    return {
-      props: {
-        error: 'Nothing to see here',
-      },
-    };
-  }
+
   const newPoke = {
     name: data.name,
     id: data.id,
